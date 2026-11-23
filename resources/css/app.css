@@ -1,0 +1,172 @@
+@import 'tailwindcss';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+@import '@fontsource/roboto/900.css';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.jsx';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Roboto', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --color-smarkets-deep: #00211F;
+    --color-smarkets-surface: #072C29;
+    --color-smarkets-elevated: #0D3A36;
+    --color-smarkets-mint: #0AC28B;
+    --color-smarkets-mint-hover: #08A878;
+    --color-smarkets-neutral: #EDEDED;
+}
+
+/* Theme Tokens: Light (default), Dark, and QALL (Smarkets-inspired) */
+:root,
+[data-theme='light'] {
+    --bg-canvas: #f7f7f7;
+    --bg-surface: #ffffff;
+    --bg-surface-alt: #fafafa;
+    --bg-hover: #f2f8f5;
+    --bg-nav: #ffffff;
+    --border-subtle: #eeeeee;
+    --border-strong: #dddddd;
+    --text-primary: #333333;
+    --text-secondary: #4d4d4d;
+    --text-muted: #bababa;
+    --accent: #0AC28B;
+    --accent-soft: rgba(10, 194, 139, 0.12);
+    --accent-text: #008a5a;
+    --header-shadow: 0 1px 2px rgba(0, 33, 31, 0.05);
+}
+
+[data-theme='dark'] {
+    --bg-canvas: #0b1014;
+    --bg-surface: #121920;
+    --bg-surface-alt: #18212b;
+    --bg-hover: #1f2a36;
+    --bg-nav: #10171d;
+    --border-subtle: #222e3a;
+    --border-strong: #324252;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --accent: #00b073;
+    --accent-soft: rgba(0, 176, 115, 0.16);
+    --accent-text: #10d48e;
+    --header-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='qall'] {
+    --bg-canvas: #132144;
+    --bg-surface: #192b56;
+    --bg-surface-alt: #1f3466;
+    --bg-hover: #253d75;
+    --bg-nav: #0f1b38;
+    --border-subtle: #284078;
+    --border-strong: #355294;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #8fa3cc;
+    --accent: #f5820d;
+    --accent-soft: rgba(245, 130, 13, 0.16);
+    --accent-text: #ff9a2e;
+    --header-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    transition: background-color 150ms ease, color 150ms ease;
+}
+
+.font-inter-black {
+    font-family: var(--font-sans);
+    font-weight: 900;
+    letter-spacing: -0.025em;
+    font-variant-numeric: tabular-nums;
+}
+
+table {
+    font-variant-numeric: tabular-nums;
+}
+
+/* Smooth UI/UX transitions & micro-interactions */
+@keyframes qallFadeSlideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-6px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.animate-popover {
+    animation: qallFadeSlideDown 240ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes qallPageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-page-enter {
+    animation: qallPageEnter 320ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    will-change: opacity, transform;
+}
+
+.qall-row-hover {
+    transition: background-color 150ms ease;
+}
+
+.qall-row-hover:hover {
+    background-color: var(--bg-hover);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+    transition:
+        color 150ms ease,
+        background-color 150ms ease,
+        border-color 150ms ease,
+        box-shadow 150ms ease,
+        transform 150ms cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 150ms ease;
+}
+
+button:not(:disabled):active {
+    transform: scale(0.98);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 2px var(--accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-page-enter,
+    .animate-popover {
+        animation: none !important;
+    }
+    * {
+        transition-duration: 0.01ms !important;
+    }
+}
