@@ -1,6 +1,6 @@
 # QALLUIv2
 
-Insurance & CRM dashboard built with **Laravel 12**, **Inertia.js (React)**, and **Tailwind CSS v4**.
+Dashboard built with **Laravel 12**, **Inertia.js (React)**, and **Tailwind CSS v4**.
 
 ## Tech Stack
 - **Backend**: Laravel 12 (PHP)
