@@ -31,9 +31,10 @@ resources/js/
 │       └── TopNav.jsx
 ├── Pages/                   # Feature/domain-grouped Inertia pages
 │   ├── Admin/               # Compliance, Kanban, SecondaryApproval, Users, Voip
+│   ├── Auth/                # Login (with Admin / Junior / Finance quick switcher)
 │   ├── Billing/             # Billing, Ledger, PaymentFailures
 │   ├── Dashboard/           # Index
-│   ├── Leads/               # LeadsIndex, LeadEdit
+│   ├── Leads/               # LeadsIndex, LeadEdit, AddLead
 │   ├── Operations/          # Calendar, DailyReporting, Messages
 │   ├── Other/               # Customers, ModulePage
 │   ├── Reports/             # CommissionVariance, Externals, PoolLeads
@@ -56,6 +57,12 @@ npm run dev
 # Build for production
 npm run build
 ```
+
+## Account Views & Routes
+- **Sign In**: `/login` (`Ise Admin`, `Ise Junior`, `Ise Finance` account switcher)
+- **Admin (`Ise Admin`)**: `/` and full navigation
+- **Junior (`Ise Junior`)**: `/junior` (Dashboard, My Leads, Add Lead, Static Leads, Payment Failures, Leads Pool, Rejected Pool, Calendar, Kanban Board)
+- **Finance (`Ise Finance`)**: `/finance` (Dashboard, Billing -> Payment Failure / Billing / Ledger, Report -> Externals)
 
 ## Documentation & Skills
 - Daily changelog: `docs/UpdateLog.md`

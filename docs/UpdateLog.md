@@ -1,7 +1,9 @@
 # QALLUIv2 — Update Log
 
 ## 2026-11-24
-- Added `/junior` and `/finance` routes in `routes/web.php` sharing the same admin Dashboard UI/UX.
+- Added `/login` (`Pages/Auth/Login.jsx`) with quick account switcher for **Ise Admin** (`/`), **Ise Junior** (`/junior`), and **Ise Finance** (`/finance`), plus working **Sign Out** navigation in `TopNav.jsx`.
+- Added `/junior` routes & scoped navigation (`Dashboard`, `My Leads`, `Add Lead` -> `Pages/Leads/AddLead.jsx`, `Static Leads`, `Payment Failures`, `Leads Pool`, `Rejected Pool`, `Calendar`, `Kanban Board`).
+- Added `/finance` routes & scoped navigation (`Dashboard`, `Billing` -> `Payment Failure` / `Billing` / `Ledger`, `Report` -> `Externals`).
 
 ## 2026-11-23
 - Added `component-architecture` and `feature-based-architecture` skills under `.agents/skills/`.

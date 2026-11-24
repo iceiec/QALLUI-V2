@@ -210,6 +210,95 @@ export default function TopNav({
                                     </Link>
                                 ))}
                             </>
+                        ) : url.startsWith('/finance') ? (
+                            <>
+                                <Link
+                                    href="/finance"
+                                    className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors"
+                                    style={{
+                                        backgroundColor: url === '/finance' ? 'var(--accent-soft)' : 'transparent',
+                                        color: url === '/finance' ? 'var(--accent-text)' : 'var(--text-secondary)',
+                                    }}
+                                >
+                                    <LayoutDashboard className="h-3.5 w-3.5" />
+                                    <span>Dashboard</span>
+                                </Link>
+
+                                <div className="relative">
+                                    <button
+                                        type="button"
+                                        onClick={() => setOpenMenu(openMenu === 'finance-billing' ? null : 'finance-billing')}
+                                        className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer"
+                                        style={{
+                                            backgroundColor: url.includes('/finance/billing') ? 'var(--accent-soft)' : 'transparent',
+                                            color: url.includes('/finance/billing') ? 'var(--accent-text)' : 'var(--text-secondary)',
+                                        }}
+                                    >
+                                        <Layers className="h-3.5 w-3.5" />
+                                        <span>Billing</span>
+                                        <ChevronDown className="h-3 w-3" />
+                                    </button>
+                                    {openMenu === 'finance-billing' && (
+                                        <div
+                                            className="animate-popover absolute left-0 mt-2 w-52 rounded-xl border shadow-xl p-1.5 z-50"
+                                            style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-subtle)' }}
+                                        >
+                                            {[
+                                                { label: 'Payment Failure', href: '/finance/billing/payment-failures' },
+                                                { label: 'Billing', href: '/finance/billing' },
+                                                { label: 'Ledger', href: '/finance/billing/ledger' },
+                                            ].map((item) => (
+                                                <Link
+                                                    key={item.href}
+                                                    href={item.href}
+                                                    onClick={() => setOpenMenu(null)}
+                                                    className="block rounded-lg px-3 py-2 text-xs font-semibold hover:bg-black/5 transition-colors"
+                                                    style={{
+                                                        backgroundColor: url === item.href ? 'var(--accent-soft)' : 'transparent',
+                                                        color: url === item.href ? 'var(--accent-text)' : 'var(--text-primary)',
+                                                    }}
+                                                >
+                                                    {item.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="relative">
+                                    <button
+                                        type="button"
+                                        onClick={() => setOpenMenu(openMenu === 'finance-report' ? null : 'finance-report')}
+                                        className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer"
+                                        style={{
+                                            backgroundColor: url.includes('/finance/reports') ? 'var(--accent-soft)' : 'transparent',
+                                            color: url.includes('/finance/reports') ? 'var(--accent-text)' : 'var(--text-secondary)',
+                                        }}
+                                    >
+                                        <ShieldCheck className="h-3.5 w-3.5" />
+                                        <span>Report</span>
+                                        <ChevronDown className="h-3 w-3" />
+                                    </button>
+                                    {openMenu === 'finance-report' && (
+                                        <div
+                                            className="animate-popover absolute left-0 mt-2 w-48 rounded-xl border shadow-xl p-1.5 z-50"
+                                            style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-subtle)' }}
+                                        >
+                                            <Link
+                                                href="/finance/reports/externals"
+                                                onClick={() => setOpenMenu(null)}
+                                                className="block rounded-lg px-3 py-2 text-xs font-semibold hover:bg-black/5 transition-colors"
+                                                style={{
+                                                    backgroundColor: url === '/finance/reports/externals' ? 'var(--accent-soft)' : 'transparent',
+                                                    color: url === '/finance/reports/externals' ? 'var(--accent-text)' : 'var(--text-primary)',
+                                                }}
+                                            >
+                                                Externals
+                                            </Link>
+                                        </div>
+                                    )}
+                                </div>
+                            </>
                         ) : (
                             <>
                             <Link
@@ -588,7 +677,10 @@ export default function TopNav({
                                 <div className="my-1 border-t" style={{ borderColor: 'var(--border-subtle)' }} />
                                 <button
                                     type="button"
-                                    onClick={() => setUserMenuOpen(false)}
+                                    onClick={() => {
+                                        setUserMenuOpen(false);
+                                        router.visit('/login');
+                                    }}
                                     className="flex w-full items-center gap-2.5 px-3.5 py-2 text-left hover:bg-black/5 cursor-pointer"
                                     style={{ color: 'var(--text-muted)' }}
                                 >

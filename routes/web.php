@@ -9,7 +9,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', fn () => \Inertia\Inertia::render('Auth/Login'))->name('login');
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/finance', [DashboardController::class, 'index'])->name('finance.dashboard');
+
+Route::prefix('finance')->name('finance.')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/billing', fn () => \Inertia\Inertia::render('Billing/Billing'))->name('billing');
+    Route::get('/billing/payment-failures', fn () => \Inertia\Inertia::render('Billing/PaymentFailures'))->name('payment-failures');
+    Route::get('/billing/ledger', fn () => \Inertia\Inertia::render('Billing/Ledger'))->name('ledger');
+    Route::get('/reports/externals', fn () => \Inertia\Inertia::render('Reports/Externals'))->name('externals');
+});
 
 Route::prefix('junior')->name('junior.')->group(function () {
     Route::get('/login', fn () => \Inertia\Inertia::render('Auth/Login'))->name('login');

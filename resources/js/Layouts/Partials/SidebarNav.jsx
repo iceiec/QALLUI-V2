@@ -36,6 +36,25 @@ const JUNIOR_NAV_GROUPS = [
     },
 ];
 
+const FINANCE_NAV_GROUPS = [
+    {
+        label: 'Main',
+        items: [{ label: 'Dashboard', href: '/finance', icon: LayoutDashboard }],
+    },
+    {
+        label: 'Billing',
+        items: [
+            { label: 'Payment Failure', href: '/finance/billing/payment-failures', icon: Wallet },
+            { label: 'Billing', href: '/finance/billing', icon: FileBarChart2 },
+            { label: 'Ledger', href: '/finance/billing/ledger', icon: Database },
+        ],
+    },
+    {
+        label: 'Report',
+        items: [{ label: 'Externals', href: '/finance/reports/externals', icon: FileBarChart2 }],
+    },
+];
+
 const NAV_GROUPS = [
     {
         label: 'Main',
@@ -105,7 +124,7 @@ export default function SidebarNav({ mobileOpen, onCloseMobile, desktopVisible }
     const navContent = (
         <div className="flex h-full flex-col justify-between p-3">
             <div className="space-y-5">
-                {(url.startsWith('/junior') ? JUNIOR_NAV_GROUPS : NAV_GROUPS).map((group) => (
+                {(url.startsWith('/junior') ? JUNIOR_NAV_GROUPS : url.startsWith('/finance') ? FINANCE_NAV_GROUPS : NAV_GROUPS).map((group) => (
                     <div key={group.label}>
                         <div className="px-2.5 pb-1.5 text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>
                             {group.label}
