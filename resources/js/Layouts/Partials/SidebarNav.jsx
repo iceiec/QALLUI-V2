@@ -13,7 +13,28 @@ import {
     FileBarChart2,
     ChevronDown,
     X,
+    UserPlus,
+    UserCheck,
+    Wallet,
+    UserX,
 } from 'lucide-react';
+
+const JUNIOR_NAV_GROUPS = [
+    {
+        label: 'Main',
+        items: [
+            { label: 'Dashboard', href: '/junior', icon: LayoutDashboard },
+            { label: 'My Leads', href: '/junior/leads', icon: Users },
+            { label: 'Add Lead', href: '/junior/leads/add', icon: UserPlus },
+            { label: 'Static Leads', href: '/junior/leads/static', icon: UserCheck },
+            { label: 'Payment Failures', href: '/junior/billing/payment-failures', icon: Wallet },
+            { label: 'Leads Pool', href: '/junior/leads/pool', icon: Database },
+            { label: 'Rejected Pool', href: '/junior/reports/rejected-pool', icon: UserX },
+            { label: 'Calendar', href: '/junior/calendar', icon: Calendar },
+            { label: 'Kanban Board', href: '/junior/kanban', icon: Kanban },
+        ],
+    },
+];
 
 const NAV_GROUPS = [
     {
@@ -84,7 +105,7 @@ export default function SidebarNav({ mobileOpen, onCloseMobile, desktopVisible }
     const navContent = (
         <div className="flex h-full flex-col justify-between p-3">
             <div className="space-y-5">
-                {NAV_GROUPS.map((group) => (
+                {(url.startsWith('/junior') ? JUNIOR_NAV_GROUPS : NAV_GROUPS).map((group) => (
                     <div key={group.label}>
                         <div className="px-2.5 pb-1.5 text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>
                             {group.label}

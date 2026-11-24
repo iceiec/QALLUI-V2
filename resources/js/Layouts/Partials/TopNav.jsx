@@ -130,11 +130,88 @@ export default function TopNav({
                     <nav
                         className={`hidden lg:flex items-center gap-1 ml-2 transition-all duration-300 ease-out origin-left ${
                             navMode === 'topbar'
-                                ? 'opacity-100 scale-100 max-w-2xl'
+                                ? 'opacity-100 scale-100 max-w-4xl'
                                 : 'opacity-0 scale-95 max-w-0 overflow-hidden pointer-events-none'
                         }`}
                         aria-hidden={navMode !== 'topbar'}
                     >
+                        {url.startsWith('/junior') ? (
+                            <>
+                                <Link
+                                    href="/junior"
+                                    className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors"
+                                    style={{
+                                        backgroundColor: url === '/junior' ? 'var(--accent-soft)' : 'transparent',
+                                        color: url === '/junior' ? 'var(--accent-text)' : 'var(--text-secondary)',
+                                    }}
+                                >
+                                    <LayoutDashboard className="h-3.5 w-3.5" />
+                                    <span>Dashboard</span>
+                                </Link>
+
+                                <div className="relative">
+                                    <button
+                                        type="button"
+                                        onClick={() => setOpenMenu(openMenu === 'junior-leads' ? null : 'junior-leads')}
+                                        className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer"
+                                        style={{
+                                            backgroundColor: url.includes('/junior/leads') || url.includes('/junior/reports') ? 'var(--accent-soft)' : 'transparent',
+                                            color: url.includes('/junior/leads') || url.includes('/junior/reports') ? 'var(--accent-text)' : 'var(--text-secondary)',
+                                        }}
+                                    >
+                                        <Users className="h-3.5 w-3.5" />
+                                        <span>Leads</span>
+                                        <ChevronDown className="h-3 w-3" />
+                                    </button>
+                                    {openMenu === 'junior-leads' && (
+                                        <div
+                                            className="animate-popover absolute left-0 mt-2 w-56 rounded-xl border shadow-xl p-1.5 z-50"
+                                            style={{ backgroundColor: 'var(--bg-surface)', borderColor: 'var(--border-subtle)' }}
+                                        >
+                                            {[
+                                                { label: 'My Leads', href: '/junior/leads' },
+                                                { label: 'Add Lead', href: '/junior/leads/add' },
+                                                { label: 'Static Leads', href: '/junior/leads/static' },
+                                                { label: 'Leads Pool', href: '/junior/leads/pool' },
+                                                { label: 'Rejected Pool', href: '/junior/reports/rejected-pool' },
+                                            ].map((item) => (
+                                                <Link
+                                                    key={item.href}
+                                                    href={item.href}
+                                                    onClick={() => setOpenMenu(null)}
+                                                    className="block rounded-lg px-3 py-2 text-xs font-semibold hover:bg-black/5 transition-colors"
+                                                    style={{
+                                                        backgroundColor: url === item.href ? 'var(--accent-soft)' : 'transparent',
+                                                        color: url === item.href ? 'var(--accent-text)' : 'var(--text-primary)',
+                                                    }}
+                                                >
+                                                    {item.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+
+                                {[
+                                    { label: 'Payment Failures', href: '/junior/billing/payment-failures' },
+                                    { label: 'Calendar', href: '/junior/calendar' },
+                                    { label: 'Kanban Board', href: '/junior/kanban' },
+                                ].map((item) => (
+                                    <Link
+                                        key={item.href}
+                                        href={item.href}
+                                        className="rounded-lg px-3 py-1.5 text-xs font-semibold whitespace-nowrap transition-colors"
+                                        style={{
+                                            backgroundColor: url === item.href ? 'var(--accent-soft)' : 'transparent',
+                                            color: url === item.href ? 'var(--accent-text)' : 'var(--text-secondary)',
+                                        }}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                ))}
+                            </>
+                        ) : (
+                            <>
                             <Link
                                 href="/"
                                 className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-colors"
@@ -402,6 +479,8 @@ export default function TopNav({
                                     </div>
                                 )}
                             </div>
+                            </>
+                        )}
                         </nav>
                 </div>
 
@@ -450,22 +529,31 @@ export default function TopNav({
                     <NotificationsModal open={notificationsOpen} onClose={() => setNotificationsOpen(false)} />
 
                     <div ref={userMenuRef} className="relative pl-1.5 sm:pl-2 border-l" style={{ borderColor: 'var(--border-subtle)' }}>
-                        <button
-                            type="button"
-                            onClick={() => setUserMenuOpen((prev) => !prev)}
-                            className="flex items-center gap-2 rounded-lg px-1 sm:px-1.5 py-1 hover:bg-black/5 cursor-pointer transition-colors"
-                        >
-                            <div className="hidden sm:block text-right leading-tight">
-                                <div className="text-xs font-bold" style={{ color: 'var(--text-primary)' }}>Angelo Villanueva</div>
-                                <div className="text-[10px]" style={{ color: 'var(--text-muted)' }}>Master Admin</div>
-                            </div>
-                            <div
-                                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-inter-black text-xs text-white"
-                                style={{ backgroundColor: 'var(--accent)' }}
-                            >
-                                AV
-                            </div>
-                        </button>
+                        {(() => {
+                            const isJunior = url.startsWith('/junior');
+                            const isFinance = url.startsWith('/finance');
+                            const userName = isJunior ? 'Ise Junior' : isFinance ? 'Ise Finance' : 'Ise Admin';
+                            const userRole = isJunior ? 'Junior' : isFinance ? 'Finance' : 'Master Admin';
+                            const userInitials = isJunior ? 'IJ' : isFinance ? 'IF' : 'IA';
+                            return (
+                                <button
+                                    type="button"
+                                    onClick={() => setUserMenuOpen((prev) => !prev)}
+                                    className="flex items-center gap-2 rounded-lg px-1 sm:px-1.5 py-1 hover:bg-black/5 cursor-pointer transition-colors"
+                                >
+                                    <div className="hidden sm:block text-right leading-tight">
+                                        <div className="text-xs font-bold" style={{ color: 'var(--text-primary)' }}>{userName}</div>
+                                        <div className="text-[10px]" style={{ color: 'var(--text-muted)' }}>{userRole}</div>
+                                    </div>
+                                    <div
+                                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full font-inter-black text-xs text-white"
+                                        style={{ backgroundColor: 'var(--accent)' }}
+                                    >
+                                        {userInitials}
+                                    </div>
+                                </button>
+                            );
+                        })()}
 
                         {userMenuOpen && (
                             <div

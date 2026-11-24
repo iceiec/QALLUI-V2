@@ -1,5 +1,8 @@
 # QALLUIv2 — Update Log
 
+## 2026-11-24
+- Added `/junior` and `/finance` routes in `routes/web.php` sharing the same admin Dashboard UI/UX.
+
 ## 2026-11-23
 - Added `component-architecture` and `feature-based-architecture` skills under `.agents/skills/`.
 

@@ -7,7 +7,22 @@ use App\Http\Controllers\OperationsController;
 use App\Http\Controllers\OtherController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/login', fn () => \Inertia\Inertia::render('Auth/Login'))->name('login');
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/finance', [DashboardController::class, 'index'])->name('finance.dashboard');
+
+Route::prefix('junior')->name('junior.')->group(function () {
+    Route::get('/login', fn () => \Inertia\Inertia::render('Auth/Login'))->name('login');
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/leads', [LeadController::class, 'all'])->name('leads');
+    Route::get('/leads/add', fn () => \Inertia\Inertia::render('Leads/AddLead'))->name('leads.add');
+    Route::get('/leads/static', [LeadController::class, 'static'])->name('leads.static');
+    Route::get('/leads/pool', [LeadController::class, 'pool'])->name('leads.pool');
+    Route::get('/billing/payment-failures', fn () => \Inertia\Inertia::render('Billing/PaymentFailures'))->name('payment-failures');
+    Route::get('/reports/rejected-pool', fn () => \Inertia\Inertia::render('Reports/PoolLeads', ['mode' => 'rejected', 'title' => 'Rejected Leads']))->name('rejected-pool');
+    Route::get('/calendar', [OperationsController::class, 'calendar'])->name('calendar');
+    Route::get('/kanban', [AdminController::class, 'kanban'])->name('kanban');
+});
 
 Route::prefix('leads')->name('leads.')->group(function () {
     Route::get('/', [LeadController::class, 'all'])->name('all');
