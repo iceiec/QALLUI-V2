@@ -22,7 +22,7 @@ import Badge from '@/components/Badge';
 import UserAvatar from '@/components/UserAvatar';
 import ConfirmModal from '@/components/ConfirmModal';
 import MobileFilterDrawer from '@/components/MobileFilterDrawer';
-import { LEADS_DATASET } from '@/data/mockData';
+import { LEADS_DATASET } from '@/core/data/mockData';
 
 const ADVISOR_OPTIONS = [
     'Angelo Villanueva',
@@ -578,7 +578,7 @@ export default function LeadsIndex({ mode = 'all', title = 'All Leads', subtitle
                                                 <span className="rounded-md px-1.5 py-0.5 font-semibold tabular-nums" style={{ backgroundColor: 'var(--bg-card)', color: 'var(--text-secondary)' }}>
                                                     {lead.policyNumber || 'No Policy #'}
                                                 </span>
-                                                <span>â€¢</span>
+                                                <span>Ã¢â‚¬Â¢</span>
                                                 <span className="truncate">{lead.source}</span>
                                             </div>
                                         </div>
@@ -740,7 +740,7 @@ export default function LeadsIndex({ mode = 'all', title = 'All Leads', subtitle
                                     <div>
                                         <div className="font-bold text-sm" style={{ color: 'var(--text-primary)' }}>{lead.clientName}</div>
                                         <div className="text-[11px] mt-0.5" style={{ color: 'var(--text-muted)' }}>
-                                            {lead.id} â€¢ {lead.source}
+                                            {lead.id} Ã¢â‚¬Â¢ {lead.source}
                                         </div>
                                     </div>
                                     <Badge stage={lead.stage}>{lead.stage}</Badge>

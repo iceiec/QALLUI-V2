@@ -14,7 +14,7 @@ import {
     ON_COVER_GAUGES,
     COMPLIANCE_SUMMARY,
     LEADS_DATASET,
-} from '@/data/mockData';
+} from '@/core/data/mockData';
 
 const TIMEFRAMES = ['7D', '30D', 'All Time'];
 
@@ -78,7 +78,7 @@ export default function DashboardIndex() {
                             Dashboard
                         </h1>
                         <p className="text-xs sm:text-sm mt-0.5" style={{ color: 'var(--text-muted)' }}>
-                            5 Advisors â€¢ 22,762 Total Leads
+                            5 Advisors Ã¢â‚¬Â¢ 22,762 Total Leads
                         </p>
                     </div>
 
@@ -305,12 +305,12 @@ export default function DashboardIndex() {
                             style={{ backgroundColor: 'var(--bg-surface-alt)', borderColor: 'var(--border-subtle)' }}
                         >
                             <div>
-                                <div className="font-inter-black text-2xl" style={{ color: 'var(--text-primary)' }}>Â£782.00</div>
+                                <div className="font-inter-black text-2xl" style={{ color: 'var(--text-primary)' }}>Ã‚Â£782.00</div>
                                 <div className="text-[11px]" style={{ color: 'var(--text-muted)' }}>Average across approved on-cover policies</div>
                             </div>
                             <div className="sm:text-right">
                                 <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>Highest Avg Band</div>
-                                <div className="text-xs font-bold" style={{ color: 'var(--accent-text)' }}>Leanne Devine (Â£819.30)</div>
+                                <div className="text-xs font-bold" style={{ color: 'var(--accent-text)' }}>Leanne Devine (Ã‚Â£819.30)</div>
                             </div>
                         </div>
 
@@ -319,11 +319,11 @@ export default function DashboardIndex() {
                                 <thead>
                                     <tr style={{ color: 'var(--text-muted)' }}>
                                         <th className="pb-2 font-bold uppercase">Advisor</th>
-                                        <th className="pb-2 font-bold uppercase text-right">&lt;Â£80</th>
-                                        <th className="pb-2 font-bold uppercase text-right">Â£80-120</th>
-                                        <th className="pb-2 font-bold uppercase text-right">Â£120-150</th>
-                                        <th className="pb-2 font-bold uppercase text-right">Â£150-250</th>
-                                        <th className="pb-2 font-bold uppercase text-right">Â£250+</th>
+                                        <th className="pb-2 font-bold uppercase text-right">&lt;Ã‚Â£80</th>
+                                        <th className="pb-2 font-bold uppercase text-right">Ã‚Â£80-120</th>
+                                        <th className="pb-2 font-bold uppercase text-right">Ã‚Â£120-150</th>
+                                        <th className="pb-2 font-bold uppercase text-right">Ã‚Â£150-250</th>
+                                        <th className="pb-2 font-bold uppercase text-right">Ã‚Â£250+</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -571,7 +571,7 @@ export default function DashboardIndex() {
                         <div className="flex items-center justify-between mb-3">
                             <h2 className="font-inter-black text-sm sm:text-base" style={{ color: 'var(--text-primary)' }}>Compliance Summary</h2>
                             <Link href="/admin/compliance" className="text-xs font-semibold" style={{ color: 'var(--accent-text)' }}>
-                                Open Queue â†’
+                                Open Queue Ã¢â€ â€™
                             </Link>
                         </div>
                         <div className="overflow-x-auto">
@@ -666,7 +666,7 @@ export default function DashboardIndex() {
                                     <Badge stage={lead.stage}>{lead.stage}</Badge>
                                 </div>
                                 <div className="flex items-center justify-between text-[11px]" style={{ color: 'var(--text-muted)' }}>
-                                    <span>{lead.source} â€¢ {lead.assignee}</span>
+                                    <span>{lead.source} Ã¢â‚¬Â¢ {lead.assignee}</span>
                                     <span className="font-inter-black" style={{ color: 'var(--text-primary)' }}>{lead.premium}</span>
                                 </div>
                             </div>
@@ -686,7 +686,7 @@ export default function DashboardIndex() {
                             className="inline-flex items-center justify-center rounded-lg border px-3.5 py-2 text-xs font-semibold self-start sm:self-auto"
                             style={{ borderColor: 'var(--accent)', color: 'var(--accent-text)', backgroundColor: 'var(--accent-soft)' }}
                         >
-                            Open Daily Reporting â†’
+                            Open Daily Reporting Ã¢â€ â€™
                         </Link>
                     </div>
                 </Card>

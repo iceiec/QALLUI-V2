@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { router } from '@inertiajs/react';
 import { Search, X, ArrowRight } from 'lucide-react';
-import { LEADS_DATASET, MOST_LEADS_ADVISORS } from '@/data/mockData';
+import { LEADS_DATASET, MOST_LEADS_ADVISORS } from '@/core/data/mockData';
 import Badge from '@/components/Badge';
 
 export default function GlobalSearchModal({ open, onClose }) {
@@ -85,7 +85,7 @@ export default function GlobalSearchModal({ open, onClose }) {
                                         <div>
                                             <div className="text-sm font-semibold">{lead.clientName}</div>
                                             <div className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                                                {lead.source} â€¢ {lead.assignee}
+                                                {lead.source} Ã¢â‚¬Â¢ {lead.assignee}
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-2">

@@ -5,13 +5,13 @@ import { createRoot } from 'react-dom/client';
 createInertiaApp({
     title: (title) => (title ? `${title} — QALL` : 'QALL'),
     resolve: (name) => {
-        const pages = import.meta.glob('./features/**/pages/*.jsx', { eager: true });
+        const pages = import.meta.glob('./features/**/views/*.jsx', { eager: true });
         const [feature, ...rest] = name.split('/');
         const pageName = rest.join('/');
-        const path = `./features/${feature.toLowerCase()}/pages/${pageName}.jsx`;
+        const path = `./features/${feature}/views/${pageName}.jsx`;
 
         if (!pages[path]) {
-            throw new Error(`Inertia page not found: ${name} (expected ${path})`);
+            throw new Error(`Inertia view not found: ${name} (expected ${path})`);
         }
 
         return pages[path];

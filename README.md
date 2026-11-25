@@ -12,29 +12,13 @@ Dashboard built with **Laravel 12**, **Inertia.js (React)**, and **Tailwind CSS 
 
 ```text
 resources/js/
-├── app.jsx                     # Inertia resolver: 'Domain/Page' -> ./features/<domain>/pages/<Page>.jsx
-├── features/                   # Feature/domain-grouped modules
-│   ├── admin/
-│   │   └── pages/              # Compliance, Kanban, SecondaryApproval, Users, Voip
-│   ├── auth/
-│   │   └── pages/              # Login (with Admin / Junior / Finance quick switcher)
-│   ├── billing/
-│   │   └── pages/              # Billing, Ledger, PaymentFailures
-│   ├── customers/
-│   │   └── pages/              # Customers
-│   ├── dashboard/
-│   │   └── pages/              # Index
-│   ├── leads/
-│   │   ├── components/         # AddPolicyModal, AppointmentsModal
-│   │   └── pages/              # LeadsIndex, LeadEdit, AddLead
-│   ├── operations/
-│   │   └── pages/              # Calendar, DailyReporting, Messages
-│   ├── other/
-│   │   └── pages/              # ModulePage
-│   ├── reports/
-│   │   └── pages/              # CommissionVariance, Externals, PoolLeads
-│   └── settings/
-│       └── pages/              # AdminSetting, BillTo, DbBackups, LeadSources, Users
+├── core/                       # Global configurations, datasets, and theme
+│   ├── config/
+│   │   └── bootstrap.js
+│   ├── data/
+│   │   └── mockData.js
+│   └── theme/
+│       └── antdTheme.js
 ├── components/                 # Shared, domain-agnostic UI primitives
 │   ├── Badge.jsx
 │   ├── Card.jsx
@@ -43,7 +27,7 @@ resources/js/
 │   ├── DonutChart.jsx
 │   ├── MobileFilterDrawer.jsx
 │   └── UserAvatar.jsx
-├── layouts/                    # App shell & layout-only components
+├── layouts/                    # Application-level layouts
 │   ├── AppLayout.jsx
 │   └── components/
 │       ├── GlobalSearchModal.jsx
@@ -51,11 +35,33 @@ resources/js/
 │       ├── SidebarNav.jsx
 │       ├── ThemeStudioPopover.jsx
 │       └── TopNav.jsx
-├── data/                       # Mock datasets
-└── theme/                      # Theme configuration
+├── features/                   # Feature/domain-grouped modules (PascalCase)
+│   ├── Admin/
+│   │   └── views/              # Compliance, Kanban, SecondaryApproval, Users, Voip
+│   ├── Auth/
+│   │   └── views/              # Login (with Admin / Junior / Finance quick switcher)
+│   ├── Billing/
+│   │   └── views/              # Billing, Ledger, PaymentFailures
+│   ├── Customers/
+│   │   └── views/              # Customers
+│   ├── Dashboard/
+│   │   └── views/              # Index
+│   ├── Leads/
+│   │   ├── components/         # AddPolicyModal, AppointmentsModal
+│   │   └── views/              # LeadsIndex, LeadEdit, AddLead
+│   ├── Operations/
+│   │   └── views/              # Calendar, DailyReporting, Messages
+│   ├── Other/
+│   │   └── views/              # ModulePage
+│   ├── Reports/
+│   │   └── views/              # CommissionVariance, Externals, PoolLeads
+│   └── Settings/
+│       └── views/              # AdminSetting, BillTo, DbBackups, LeadSources, Users
+├── app.js
+└── app.jsx                     # Inertia entry point: 'Feature/View' -> ./features/<Feature>/views/<View>.jsx
 ```
 
-Imports use the `@/` path alias (mapped to `resources/js/` in `vite.config.js` and `jsconfig.json`) for shared modules and relative paths within the same feature.
+Imports use the `@/` path alias (mapped to `resources/js/` in `vite.config.js` and `jsconfig.json`) for shared modules (`@/core/*`, `@/components/*`, `@/layouts/*`) and relative paths within the same feature.
 
 ## Getting Started
 

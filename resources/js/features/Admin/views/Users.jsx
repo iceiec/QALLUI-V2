@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import AppLayout from '@/layouts/AppLayout';
 import Card from '@/components/Card';
 import Badge from '@/components/Badge';
-import { MOST_LEADS_ADVISORS } from '@/data/mockData';
+import { MOST_LEADS_ADVISORS } from '@/core/data/mockData';
 
 export default function Users({ title }) {
     return (

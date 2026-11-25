@@ -1,1 +1,1 @@
-import './bootstrap';
+import './core/config/bootstrap';

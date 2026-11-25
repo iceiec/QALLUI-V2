@@ -1,10 +1,11 @@
 # QALLUIv2 — Update Log
 
 ## 2026-11-25
-- Refactored `resources/js/` into a feature-based architecture (`features/<domain>/pages/`, `features/<domain>/components/`, global `components/`, and `layouts/components/`).
-- Updated `resources/js/app.jsx` Inertia page resolver to map `Inertia::render('Domain/Page')` to `./features/<domain>/pages/<Page>.jsx`.
+- Refactored `resources/js/` into a feature-based architecture (`core/`, `components/`, `layouts/`, and PascalCase `features/<Feature>/views/` + `components/`).
+- Moved global config (`bootstrap.js`), mock datasets (`mockData.js`), and theme (`antdTheme.js`) into `resources/js/core/` (`config/`, `data/`, `theme/`).
+- Updated `resources/js/app.jsx` Inertia view resolver to map `Inertia::render('Feature/View')` to `./features/<Feature>/views/<View>.jsx`.
 - Added `@/` path alias (`resources/js/`) in `vite.config.js` and `jsconfig.json` and updated all frontend imports.
-- Moved `AddPolicyModal.jsx` and `AppointmentsModal.jsx` into `features/leads/components/`, `NotificationsModal.jsx` into `layouts/components/`, and promoted `Customers.jsx` into `features/customers/pages/`.
+- Moved `AddPolicyModal.jsx` and `AppointmentsModal.jsx` into `features/Leads/components/`, `NotificationsModal.jsx` into `layouts/components/`, and promoted `Customers.jsx` into `features/Customers/views/`.
 - Updated `README.md` and `.agents/skills/` (`feature-based-architecture`, `component-architecture`) to match the new structure.
 
 ## 2026-11-24
