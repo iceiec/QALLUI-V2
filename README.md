@@ -12,36 +12,50 @@ Dashboard built with **Laravel 12**, **Inertia.js (React)**, and **Tailwind CSS 
 
 ```text
 resources/js/
-├── Components/              # Shared, domain-agnostic UI primitives & modals
-│   ├── AddPolicyModal.jsx
-│   ├── AppointmentsModal.jsx
+├── app.jsx                     # Inertia resolver: 'Domain/Page' -> ./features/<domain>/pages/<Page>.jsx
+├── features/                   # Feature/domain-grouped modules
+│   ├── admin/
+│   │   └── pages/              # Compliance, Kanban, SecondaryApproval, Users, Voip
+│   ├── auth/
+│   │   └── pages/              # Login (with Admin / Junior / Finance quick switcher)
+│   ├── billing/
+│   │   └── pages/              # Billing, Ledger, PaymentFailures
+│   ├── customers/
+│   │   └── pages/              # Customers
+│   ├── dashboard/
+│   │   └── pages/              # Index
+│   ├── leads/
+│   │   ├── components/         # AddPolicyModal, AppointmentsModal
+│   │   └── pages/              # LeadsIndex, LeadEdit, AddLead
+│   ├── operations/
+│   │   └── pages/              # Calendar, DailyReporting, Messages
+│   ├── other/
+│   │   └── pages/              # ModulePage
+│   ├── reports/
+│   │   └── pages/              # CommissionVariance, Externals, PoolLeads
+│   └── settings/
+│       └── pages/              # AdminSetting, BillTo, DbBackups, LeadSources, Users
+├── components/                 # Shared, domain-agnostic UI primitives
 │   ├── Badge.jsx
 │   ├── Card.jsx
 │   ├── ConfirmModal.jsx
 │   ├── CustomSelect.jsx
 │   ├── DonutChart.jsx
 │   ├── MobileFilterDrawer.jsx
-│   ├── NotificationsModal.jsx
 │   └── UserAvatar.jsx
-├── Layouts/                 # App shell & navigation partials
+├── layouts/                    # App shell & layout-only components
 │   ├── AppLayout.jsx
-│   └── Partials/
+│   └── components/
 │       ├── GlobalSearchModal.jsx
+│       ├── NotificationsModal.jsx
 │       ├── SidebarNav.jsx
+│       ├── ThemeStudioPopover.jsx
 │       └── TopNav.jsx
-├── Pages/                   # Feature/domain-grouped Inertia pages
-│   ├── Admin/               # Compliance, Kanban, SecondaryApproval, Users, Voip
-│   ├── Auth/                # Login (with Admin / Junior / Finance quick switcher)
-│   ├── Billing/             # Billing, Ledger, PaymentFailures
-│   ├── Dashboard/           # Index
-│   ├── Leads/               # LeadsIndex, LeadEdit, AddLead
-│   ├── Operations/          # Calendar, DailyReporting, Messages
-│   ├── Other/               # Customers, ModulePage
-│   ├── Reports/             # CommissionVariance, Externals, PoolLeads
-│   └── Settings/            # AdminSetting, BillTo, DbBackups, LeadSources, Users
-├── data/                    # Mock datasets
-└── theme/                   # Theme configuration
+├── data/                       # Mock datasets
+└── theme/                      # Theme configuration
 ```
+
+Imports use the `@/` path alias (mapped to `resources/js/` in `vite.config.js` and `jsconfig.json`) for shared modules and relative paths within the same feature.
 
 ## Getting Started
 

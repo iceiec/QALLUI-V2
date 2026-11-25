@@ -55,7 +55,7 @@ Route::prefix('billing')->name('billing.')->group(function () {
     Route::get('/ledger', fn () => \Inertia\Inertia::render('Billing/Ledger'))->name('ledger');
 });
 
-Route::get('/customers', fn () => \Inertia\Inertia::render('Other/Customers'))->name('customers');
+Route::get('/customers', fn () => \Inertia\Inertia::render('Customers/Customers'))->name('customers');
 
 Route::prefix('reports')->name('reports.')->group(function () {
     Route::get('/daily', [OperationsController::class, 'reporting'])->name('daily');

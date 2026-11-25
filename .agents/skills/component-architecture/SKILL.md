@@ -6,11 +6,11 @@ description: Component architecture conventions for QALLUIv2 (Inertia.js React +
 # Component Architecture (QALLUIv2)
 
 ## 1. Layering & Ownership
-- **Shared Primitives (`resources/js/Components/`)**: Generic, domain-agnostic UI building blocks (`Card`, `Badge`, `CustomSelect`, `UserAvatar`, `ConfirmModal`, `DonutChart`, `MobileFilterDrawer`).
+- **Shared Primitives (`resources/js/components/`)**: Generic, domain-agnostic UI building blocks (`Card`, `Badge`, `CustomSelect`, `UserAvatar`, `ConfirmModal`, `DonutChart`, `MobileFilterDrawer`).
   - Must not import page-specific data or Inertia page props directly.
   - Accept data and callbacks via props; support theme CSS variables (`var(--bg-surface)`, `var(--border-subtle)`, `var(--text-primary)`, `var(--accent)`).
-- **Layout & Navigation (`resources/js/Layouts/`)**: App shell (`AppLayout.jsx`) and navigation partials (`TopNav.jsx`, `SidebarNav.jsx`, `GlobalSearchModal.jsx`).
-- **Pages (`resources/js/Pages/<Domain>/`)**: Route-level Inertia components that compose layout, shared primitives, and domain-specific sections.
+- **Layout & Navigation (`resources/js/layouts/`)**: App shell (`AppLayout.jsx`) and layout-only components (`layouts/components/TopNav.jsx`, `SidebarNav.jsx`, `GlobalSearchModal.jsx`, `NotificationsModal.jsx`, `ThemeStudioPopover.jsx`).
+- **Feature Modules (`resources/js/features/<domain>/`)**: Route-level Inertia pages (`pages/`) and domain-specific components (`components/`), hooks (`hooks/`), and utilities (`utils/`).
 
 ## 2. Component Sizing & Decomposition
 - Keep components focused on a single responsibility.

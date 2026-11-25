@@ -1,5 +1,12 @@
 # QALLUIv2 — Update Log
 
+## 2026-11-25
+- Refactored `resources/js/` into a feature-based architecture (`features/<domain>/pages/`, `features/<domain>/components/`, global `components/`, and `layouts/components/`).
+- Updated `resources/js/app.jsx` Inertia page resolver to map `Inertia::render('Domain/Page')` to `./features/<domain>/pages/<Page>.jsx`.
+- Added `@/` path alias (`resources/js/`) in `vite.config.js` and `jsconfig.json` and updated all frontend imports.
+- Moved `AddPolicyModal.jsx` and `AppointmentsModal.jsx` into `features/leads/components/`, `NotificationsModal.jsx` into `layouts/components/`, and promoted `Customers.jsx` into `features/customers/pages/`.
+- Updated `README.md` and `.agents/skills/` (`feature-based-architecture`, `component-architecture`) to match the new structure.
+
 ## 2026-11-24
 - Added `/login` (`Pages/Auth/Login.jsx`) with quick account switcher for **Ise Admin** (`/`), **Ise Junior** (`/junior`), and **Ise Finance** (`/finance`), plus working **Sign Out** navigation in `TopNav.jsx`.
 - Added `/junior` routes & scoped navigation (`Dashboard`, `My Leads`, `Add Lead` -> `Pages/Leads/AddLead.jsx`, `Static Leads`, `Payment Failures`, `Leads Pool`, `Rejected Pool`, `Calendar`, `Kanban Board`).
